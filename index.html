@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0f172a">
+
+  <title>Meta da Renda</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top, #1e3a8a 0%, transparent 35%),
+        linear-gradient(145deg, #020617, #0f172a 55%, #111827);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 520px;
+    }
+
+    .card {
+      background: rgba(15, 23, 42, 0.92);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: 0 25px 70px rgba(0,0,0,0.45);
+      backdrop-filter: blur(12px);
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .emoji {
+      font-size: 48px;
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 30px;
+      letter-spacing: -1px;
+    }
+
+    .subtitle {
+      color: #94a3b8;
+      margin-top: 8px;
+      font-size: 15px;
+    }
+
+    .goal-card {
+      background: rgba(30, 41, 59, 0.8);
+      border-radius: 18px;
+      padding: 18px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .goal-label {
+      color: #94a3b8;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .goal-value {
+      font-size: 32px;
+      font-weight: 800;
+      margin-top: 5px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .stat {
+      background: #111827;
+      border-radius: 18px;
+      padding: 18px 12px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .stat-label {
+      color: #94a3b8;
+      font-size: 12px;
+      margin-bottom: 7px;
+    }
+
+    .stat-value {
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    .remaining {
+      color: #fbbf24;
+    }
+
+    .progress-area {
+      margin-top: 10px;
+    }
+
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 9px;
+      color: #cbd5e1;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .progress-bg {
+      width: 100%;
+      height: 32px;
+      background: #334155;
+      border-radius: 999px;
+      overflow: hidden;
+      padding: 4px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #22c55e, #84cc16);
+      transition: width 0.5s ease;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding-right: 8px;
+      min-width: 0;
+    }
+
+    .progress-bar span {
+      font-size: 11px;
+      font-weight: 900;
+      color: #052e16;
+    }
+
+    .motivation {
+      text-align: center;
+      font-size: 18px;
+      font-weight: 800;
+      margin: 22px 0;
+      min-height: 25px;
+    }
+
+    .input-title {
+      font-size: 14px;
+      color: #cbd5e1;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    input {
+      width: 100%;
+      padding: 17px;
+      border-radius: 15px;
+      border: 2px solid #334155;
+      background: #020617;
+      color: white;
+      font-size: 20px;
+      text-align: center;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #22c55e;
+    }
+
+    .button {
+      width: 100%;
+      margin-top: 12px;
+      padding: 17px;
+      border: none;
+      border-radius: 15px;
+      background: #22c55e;
+      color: #052e16;
+      font-size: 17px;
+      font-weight: 900;
+      cursor: pointer;
+      transition: transform 0.15s, filter 0.15s;
+    }
+
+    .button:hover {
+      filter: brightness(1.08);
+    }
+
+    .button:active {
+      transform: scale(0.98);
+    }
+
+    .reset {
+      background: #334155;
+      color: white;
+      font-size: 13px;
+      margin-top: 8px;
+    }
+
+    .details {
+      margin-top: 22px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      color: #94a3b8;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .details strong {
+      color: #e2e8f0;
+    }
+
+    .success {
+      background: linear-gradient(135deg, #166534, #22c55e);
+      color: white;
+      border-radius: 18px;
+      padding: 18px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: 900;
+      margin-top: 20px;
+      display: none;
+    }
+
+    @media (max-width: 420px) {
+      .card {
+        padding: 21px;
+      }
+
+      h1 {
+        font-size: 26px;
+      }
+
+      .goal-value {
+        font-size: 28px;
+      }
+
+      .stat-value {
+        font-size: 21px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="card">
+
+      <div class="header">
+        <div class="emoji">🎯</div>
+        <h1>Meta da Renda</h1>
+        <div class="subtitle">
+          Vamos buscar os €750 da renda!
+        </div>
+      </div>
+
+      <div class="goal-card">
+        <div class="goal-label">Meta bruta</div>
+        <div class="goal-value">€833,33</div>
+      </div>
+
+      <div class="stats">
+
+        <div class="stat">
+          <div class="stat-label">💰 JÁ FATURADO</div>
+          <div class="stat-value" id="currentValue">
+            €560,00
+          </div>
+        </div>
+
+        <div class="stat">
+          <div class="stat-label">🔥 AINDA FALTA</div>
+          <div class="stat-value remaining" id="remainingValue">
+            €273,33
+          </div>
+        </div>
+
+      </div>
+
+      <div class="progress-area">
+
+        <div class="progress-info">
+          <span>Progresso</span>
+          <span id="percentage">67,2%</span>
+        </div>
+
+        <div class="progress-bg">
+          <div class="progress-bar" id="progressBar">
+            <span id="progressText">67%</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="motivation" id="motivation">
+        🚀 Vamos buscar essa meta!
+      </div>
+
+      <div class="input-title">
+        Digite o seu faturamento bruto TOTAL:
+      </div>
+
+      <input
+        id="amountInput"
+        type="number"
+        min="0"
+        step="0.01"
+        placeholder="Ex.: 700"
+      >
+
+      <button class="button" onclick="updateProgress()">
+        ATUALIZAR PROGRESSO 🚀
+      </button>
+
+      <button class="button reset" onclick="resetProgress()">
+        Voltar para €560
+      </button>
+
+      <div class="success" id="success">
+        🏆 META ATINGIDA! 🏆
+        <br>
+        A renda está garantida!
+      </div>
+
+      <div class="details">
+        <div>🚗 Reserva para frota: <strong>10%</strong></div>
+        <div>🏠 Renda líquida desejada: <strong>€750,00</strong></div>
+        <div>📊 Meta bruta calculada: <strong>€833,33</strong></div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <script>
+
+    const META = 833.33;
+    const VALOR_INICIAL = 560;
+
+    let valorAtual =
+      localStorage.getItem("metaRenda")
+        ? Number(localStorage.getItem("metaRenda"))
+        : VALOR_INICIAL;
+
+
+    function euro(valor) {
+      return valor.toLocaleString("pt-PT", {
+        style: "currency",
+        currency: "EUR"
+      });
+    }
+
+
+    function atualizarTela() {
+
+      const restante = Math.max(META - valorAtual, 0);
+
+      const percentual =
+        Math.min((valorAtual / META) * 100, 100);
+
+
+      document.getElementById("currentValue")
+        .textContent = euro(valorAtual);
+
+
+      document.getElementById("remainingValue")
+        .textContent = euro(restante);
+
+
+      document.getElementById("percentage")
+        .textContent =
+        percentual.toLocaleString("pt-PT", {
+          minimumFractionDigits: 1,
+          maximumFractionDigits: 1
+        }) + "%";
+
+
+      document.getElementById("progressBar")
+        .style.width = percentual + "%";
+
+
+      document.getElementById("progressText")
+        .textContent =
+        Math.round(percentual) + "%";
+
+
+      const motivation =
+        document.getElementById("motivation");
+
+      const success =
+        document.getElementById("success");
+
+
+      if (valorAtual >= META) {
+
+        motivation.textContent =
+          "🏆 CONSEGUIU! META BATIDA!";
+
+        success.style.display = "block";
+
+      } else {
+
+        success.style.display = "none";
+
+        if (percentual >= 90) {
+
+          motivation.textContent =
+            "🔥 ESTÁ QUASE! NÃO PARE AGORA!";
+
+        } else if (percentual >= 75) {
+
+          motivation.textContent =
+            "💪 MUITO BEM! CONTINUE FIRME!";
+
+        } else if (percentual >= 50) {
+
+          motivation.textContent =
+            "🚀 JÁ PASSOU DA METADE! VAMOS!";
+
+        } else {
+
+          motivation.textContent =
+            "🔥 CADA EURO CONTA! VAMOS BUSCAR!";
+        }
+      }
+    }
+
+
+    function updateProgress() {
+
+      const input =
+        document.getElementById("amountInput");
+
+      const valor =
+        Number(input.value);
+
+
+      if (isNaN(valor) || valor < 0) {
+
+        alert("Digite um valor válido.");
+
+        return;
+      }
+
+
+      valorAtual = valor;
+
+
+      localStorage.setItem(
+        "metaRenda",
+        valorAtual
+      );
+
+
+      input.value = "";
+
+      atualizarTela();
+    }
+
+
+    function resetProgress() {
+
+      valorAtual = VALOR_INICIAL;
+
+      localStorage.setItem(
+        "metaRenda",
+        valorAtual
+      );
+
+      atualizarTela();
+    }
+
+
+    document
+      .getElementById("amountInput")
+      .addEventListener("keydown", function(event) {
+
+        if (event.key === "Enter") {
+
+          updateProgress();
+
+        }
+
+      });
+
+
+    atualizarTela();
+
+  </script>
+
+</body>
+</html>
