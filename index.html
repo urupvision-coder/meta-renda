@@ -16,26 +16,17 @@
     content="#020617"
   >
 
-  <title>
-    Meta da Renda 🎯
-  </title>
-
+  <title>Meta da Renda 🎯</title>
 
   <style>
-
-    /* =====================================================
-       RESET
-    ===================================================== */
 
     * {
       box-sizing: border-box;
     }
 
-
     html {
       scroll-behavior: smooth;
     }
-
 
     body {
 
@@ -499,7 +490,7 @@
 
 
     /* =====================================================
-       AINDA FALTA — PROMOÇÃO DE TV
+       AINDA FALTA — PROMOÇÃO
     ===================================================== */
 
     .stat:last-child {
@@ -538,11 +529,49 @@
         0 0 45px
         rgba(251,191,36,0.25);
 
+      /*
+        Mantém o efeito original tvPulse
+        e acrescenta o novo promoPulse.
+      */
+
       animation:
-        tvPulse
-        1.35s
-        ease-in-out
-        infinite;
+        tvPulse 1.35s ease-in-out infinite,
+        promoPulse 1.8s ease-in-out infinite;
+
+    }
+
+
+    /* =====================================================
+       NOVO PULSO PROMOCIONAL
+    ===================================================== */
+
+    @keyframes promoPulse {
+
+      0%, 100% {
+
+        transform:
+          scale(1);
+
+        filter:
+          drop-shadow(
+            0 4px 8px
+            rgba(0,0,0,.25)
+          );
+
+      }
+
+      50% {
+
+        transform:
+          scale(1.015);
+
+        filter:
+          drop-shadow(
+            0 6px 12px
+            rgba(0,0,0,.32)
+          );
+
+      }
 
     }
 
@@ -856,9 +885,6 @@
 
       0%,100% {
 
-        transform:
-          scale(1);
-
         box-shadow:
 
           0 0 8px
@@ -870,9 +896,6 @@
       }
 
       50% {
-
-        transform:
-          scale(1.045);
 
         box-shadow:
 
@@ -1642,6 +1665,29 @@
     }
 
 
+    /* =====================================================
+       ACESSIBILIDADE
+    ===================================================== */
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+
+        animation-duration:
+          0.01ms !important;
+
+        animation-iteration-count:
+          1 !important;
+
+        scroll-behavior:
+          auto !important;
+
+      }
+
+    }
+
   </style>
 
 </head>
@@ -1794,9 +1840,6 @@
         <!-- AINDA FALTA -->
 
         <div class="stat">
-
-
-          <!-- AURA -->
 
           <div class="tv-aura"></div>
 
@@ -2072,6 +2115,32 @@
           )
 
         : VALOR_INICIAL;
+
+
+    /* =====================================================
+       GARANTIR VALORES VÁLIDOS
+    ===================================================== */
+
+    if (
+      !Number.isFinite(META) ||
+      META <= 0
+    ) {
+
+      META =
+        META_INICIAL;
+
+    }
+
+
+    if (
+      !Number.isFinite(valorAtual) ||
+      valorAtual < 0
+    ) {
+
+      valorAtual =
+        VALOR_INICIAL;
+
+    }
 
 
     /* =====================================================
@@ -2397,6 +2466,10 @@
       }
 
 
+      const estavaAbaixo =
+        valorAtual < META;
+
+
       META =
         novaMeta;
 
@@ -2411,6 +2484,21 @@
 
 
       atualizarTela();
+
+
+      /*
+        Se a nova meta for menor ou igual
+        ao faturamento atual, celebra.
+      */
+
+      if (
+        estavaAbaixo &&
+        valorAtual >= META
+      ) {
+
+        celebrarMeta();
+
+      }
 
     }
 
@@ -2587,6 +2675,21 @@
           "vw";
 
 
+        confetti.style.background =
+          [
+            "#22c55e",
+            "#fbbf24",
+            "#3b82f6",
+            "#ef4444",
+            "#a855f7",
+            "#f97316"
+          ][
+            Math.floor(
+              Math.random() * 6
+            )
+          ];
+
+
         confetti.style.animationDelay =
           Math.random() *
           0.8 +
@@ -2630,15 +2733,6 @@
       function() {
 
         atualizarTela();
-
-        /*
-          A música não é iniciada
-          automaticamente porque os
-          navegadores podem bloquear
-          autoplay com áudio.
-
-          O utilizador inicia pelo botão.
-        */
 
       }
     );
