@@ -62,6 +62,23 @@
       font-size: 15px;
     }
 
+    .music-control {
+      width: 100%;
+      margin-bottom: 18px;
+      padding: 12px 15px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      background: #111827;
+      color: #cbd5e1;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .music-control:hover {
+      filter: brightness(1.15);
+    }
+
     .goal-card {
       background: rgba(30, 41, 59, 0.8);
       border-radius: 18px;
@@ -81,6 +98,49 @@
       font-size: 32px;
       font-weight: 800;
       margin-top: 5px;
+    }
+
+    .goal-edit {
+      margin-top: 14px;
+    }
+
+    .goal-edit input {
+      width: 100%;
+      padding: 13px;
+      border-radius: 12px;
+      border: 2px solid #334155;
+      background: #020617;
+      color: white;
+      font-size: 17px;
+      text-align: center;
+      outline: none;
+    }
+
+    .goal-edit input:focus {
+      border-color: #22c55e;
+    }
+
+    .goal-button {
+      width: 100%;
+      margin-top: 8px;
+      padding: 12px;
+      border: none;
+      border-radius: 12px;
+      background: #2563eb;
+      color: white;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .goal-button:hover {
+      filter: brightness(1.1);
+    }
+
+    .future-note {
+      margin-top: 10px;
+      color: #64748b;
+      font-size: 11px;
     }
 
     .stats {
@@ -169,7 +229,7 @@
       font-weight: 700;
     }
 
-    input {
+    .income-input {
       width: 100%;
       padding: 17px;
       border-radius: 15px;
@@ -181,7 +241,7 @@
       outline: none;
     }
 
-    input:focus {
+    .income-input:focus {
       border-color: #22c55e;
     }
 
@@ -261,101 +321,248 @@
 
 <body>
 
+  <!-- Música -->
+  <audio
+    id="backgroundMusic"
+    loop
+    preload="auto"
+  >
+    <source src="Elton John - I m Still Standing.mp3" type="audio/mpeg">
+    O seu navegador não suporta áudio.
+  </audio>
+
   <div class="container">
 
     <div class="card">
 
       <div class="header">
         <div class="emoji">🎯</div>
+
         <h1>Meta da Renda</h1>
-        <div class="subtitle">
-          Vamos buscar os €750 da renda!
+
+        <div class="subtitle" id="subtitle">
+          Vamos buscar a sua meta!
         </div>
       </div>
 
+      <!-- Controle da música -->
+      <button
+        class="music-control"
+        id="musicButton"
+        onclick="toggleMusic()"
+      >
+        🔊 Ativar música
+      </button>
+
+      <!-- META -->
       <div class="goal-card">
-        <div class="goal-label">Meta bruta</div>
-        <div class="goal-value">€833,33</div>
+
+        <div class="goal-label">
+          Meta bruta
+        </div>
+
+        <div
+          class="goal-value"
+          id="goalValue"
+        >
+          €833,33
+        </div>
+
+        <!-- Nova meta futura -->
+        <div class="goal-edit">
+
+          <input
+            id="goalInput"
+            type="number"
+            min="0.01"
+            step="0.01"
+            placeholder="Nova meta bruta"
+          >
+
+          <button
+            class="goal-button"
+            onclick="updateGoal()"
+          >
+            ➕ DEFINIR NOVA META
+          </button>
+
+          <div class="future-note">
+            Pode alterar esta meta quando quiser para uma nova meta futura.
+          </div>
+
+        </div>
+
       </div>
 
+      <!-- VALORES -->
       <div class="stats">
 
         <div class="stat">
-          <div class="stat-label">💰 JÁ FATURADO</div>
-          <div class="stat-value" id="currentValue">
+
+          <div class="stat-label">
+            💰 JÁ FATURADO
+          </div>
+
+          <div
+            class="stat-value"
+            id="currentValue"
+          >
             €560,00
           </div>
+
         </div>
 
         <div class="stat">
-          <div class="stat-label">🔥 AINDA FALTA</div>
-          <div class="stat-value remaining" id="remainingValue">
+
+          <div class="stat-label">
+            🔥 AINDA FALTA
+          </div>
+
+          <div
+            class="stat-value remaining"
+            id="remainingValue"
+          >
             €273,33
           </div>
+
         </div>
 
       </div>
 
+      <!-- PROGRESSO -->
       <div class="progress-area">
 
         <div class="progress-info">
-          <span>Progresso</span>
-          <span id="percentage">67,2%</span>
+
+          <span>
+            Progresso
+          </span>
+
+          <span id="percentage">
+            67,2%
+          </span>
+
         </div>
 
         <div class="progress-bg">
-          <div class="progress-bar" id="progressBar">
-            <span id="progressText">67%</span>
+
+          <div
+            class="progress-bar"
+            id="progressBar"
+          >
+
+            <span id="progressText">
+              67%
+            </span>
+
           </div>
+
         </div>
 
       </div>
 
-      <div class="motivation" id="motivation">
+      <div
+        class="motivation"
+        id="motivation"
+      >
         🚀 Vamos buscar essa meta!
       </div>
 
+      <!-- FATURAMENTO -->
       <div class="input-title">
         Digite o seu faturamento bruto TOTAL:
       </div>
 
       <input
         id="amountInput"
+        class="income-input"
         type="number"
         min="0"
         step="0.01"
         placeholder="Ex.: 700"
       >
 
-      <button class="button" onclick="updateProgress()">
+      <button
+        class="button"
+        onclick="updateProgress()"
+      >
         ATUALIZAR PROGRESSO 🚀
       </button>
 
-      <button class="button reset" onclick="resetProgress()">
+      <button
+        class="button reset"
+        onclick="resetProgress()"
+      >
         Voltar para €560
       </button>
 
-      <div class="success" id="success">
+      <!-- SUCESSO -->
+      <div
+        class="success"
+        id="success"
+      >
         🏆 META ATINGIDA! 🏆
         <br>
         A renda está garantida!
       </div>
 
+      <!-- DETALHES -->
       <div class="details">
-        <div>🚗 Reserva para frota: <strong>10%</strong></div>
-        <div>🏠 Renda líquida desejada: <strong>€750,00</strong></div>
-        <div>📊 Meta bruta calculada: <strong>€833,33</strong></div>
+
+        <div>
+          🚗 Reserva para frota:
+          <strong>10%</strong>
+        </div>
+
+        <div>
+          🏠 Renda líquida desejada:
+          <strong id="netIncome">
+            €750,00
+          </strong>
+        </div>
+
+        <div>
+          📊 Meta bruta atual:
+          <strong id="detailsGoal">
+            €833,33
+          </strong>
+        </div>
+
       </div>
 
     </div>
 
   </div>
 
-
   <script>
 
-    const META = 833.33;
+    /*
+      =====================================================
+      CONFIGURAÇÃO
+      =====================================================
+    */
+
+    const META_INICIAL = 833.33;
     const VALOR_INICIAL = 560;
+
+
+    /*
+      =====================================================
+      META ATUAL
+      =====================================================
+    */
+
+    let META =
+      localStorage.getItem("metaRendaGoal")
+        ? Number(localStorage.getItem("metaRendaGoal"))
+        : META_INICIAL;
+
+
+    /*
+      =====================================================
+      VALOR ATUAL
+      =====================================================
+    */
 
     let valorAtual =
       localStorage.getItem("metaRenda")
@@ -363,20 +570,38 @@
         : VALOR_INICIAL;
 
 
+    /*
+      =====================================================
+      FORMATAÇÃO EURO
+      =====================================================
+    */
+
     function euro(valor) {
+
       return valor.toLocaleString("pt-PT", {
         style: "currency",
         currency: "EUR"
       });
+
     }
 
 
+    /*
+      =====================================================
+      ATUALIZAR TELA
+      =====================================================
+    */
+
     function atualizarTela() {
 
-      const restante = Math.max(META - valorAtual, 0);
+      const restante =
+        Math.max(META - valorAtual, 0);
+
 
       const percentual =
-        Math.min((valorAtual / META) * 100, 100);
+        META > 0
+          ? Math.min((valorAtual / META) * 100, 100)
+          : 0;
 
 
       document.getElementById("currentValue")
@@ -385,6 +610,14 @@
 
       document.getElementById("remainingValue")
         .textContent = euro(restante);
+
+
+      document.getElementById("goalValue")
+        .textContent = euro(META);
+
+
+      document.getElementById("detailsGoal")
+        .textContent = euro(META);
 
 
       document.getElementById("percentage")
@@ -404,8 +637,14 @@
         Math.round(percentual) + "%";
 
 
+      document.getElementById("subtitle")
+        .textContent =
+        "Vamos buscar os " + euro(META) + "!";
+
+
       const motivation =
         document.getElementById("motivation");
+
 
       const success =
         document.getElementById("success");
@@ -421,6 +660,7 @@
       } else {
 
         success.style.display = "none";
+
 
         if (percentual >= 90) {
 
@@ -441,15 +681,25 @@
 
           motivation.textContent =
             "🔥 CADA EURO CONTA! VAMOS BUSCAR!";
+
         }
+
       }
+
     }
 
+
+    /*
+      =====================================================
+      ATUALIZAR FATURAMENTO
+      =====================================================
+    */
 
     function updateProgress() {
 
       const input =
         document.getElementById("amountInput");
+
 
       const valor =
         Number(input.value);
@@ -460,6 +710,7 @@
         alert("Digite um valor válido.");
 
         return;
+
       }
 
 
@@ -474,37 +725,210 @@
 
       input.value = "";
 
+
       atualizarTela();
+
     }
 
+
+    /*
+      =====================================================
+      NOVA META FUTURA
+      =====================================================
+    */
+
+    function updateGoal() {
+
+      const input =
+        document.getElementById("goalInput");
+
+
+      const novaMeta =
+        Number(input.value);
+
+
+      if (isNaN(novaMeta) || novaMeta <= 0) {
+
+        alert("Digite uma meta válida.");
+
+        return;
+
+      }
+
+
+      META = novaMeta;
+
+
+      localStorage.setItem(
+        "metaRendaGoal",
+        META
+      );
+
+
+      input.value = "";
+
+
+      atualizarTela();
+
+
+      alert(
+        "🎯 Nova meta definida: " + euro(META)
+      );
+
+    }
+
+
+    /*
+      =====================================================
+      RESET DO FATURAMENTO
+      =====================================================
+    */
 
     function resetProgress() {
 
       valorAtual = VALOR_INICIAL;
+
 
       localStorage.setItem(
         "metaRenda",
         valorAtual
       );
 
+
       atualizarTela();
+
     }
 
 
+    /*
+      =====================================================
+      ENTER NO CAMPO DE FATURAMENTO
+      =====================================================
+    */
+
     document
       .getElementById("amountInput")
-      .addEventListener("keydown", function(event) {
+      .addEventListener(
+        "keydown",
+        function(event) {
 
-        if (event.key === "Enter") {
+          if (event.key === "Enter") {
 
-          updateProgress();
+            updateProgress();
+
+          }
 
         }
+      );
 
-      });
+
+    /*
+      =====================================================
+      ENTER NO CAMPO DE NOVA META
+      =====================================================
+    */
+
+    document
+      .getElementById("goalInput")
+      .addEventListener(
+        "keydown",
+        function(event) {
+
+          if (event.key === "Enter") {
+
+            updateGoal();
+
+          }
+
+        }
+      );
 
 
-    atualizarTela();
+    /*
+      =====================================================
+      MÚSICA
+      =====================================================
+    */
+
+    const music =
+      document.getElementById("backgroundMusic");
+
+
+    const musicButton =
+      document.getElementById("musicButton");
+
+
+    async function startMusic() {
+
+      try {
+
+        music.volume = 0.35;
+
+        await music.play();
+
+        musicButton.textContent =
+          "⏸️ Pausar música";
+
+      } catch (error) {
+
+        /*
+          O navegador bloqueou o autoplay.
+          O botão continuará disponível.
+        */
+
+        musicButton.textContent =
+          "▶️ Ativar música";
+
+      }
+
+    }
+
+
+    function toggleMusic() {
+
+      if (music.paused) {
+
+        music.play()
+          .then(() => {
+
+            musicButton.textContent =
+              "⏸️ Pausar música";
+
+          })
+          .catch(() => {
+
+            alert(
+              "Clique novamente para ativar a música."
+            );
+
+          });
+
+      } else {
+
+        music.pause();
+
+        musicButton.textContent =
+          "▶️ Ativar música";
+
+      }
+
+    }
+
+
+    /*
+      Tenta tocar automaticamente quando a página abre.
+    */
+
+    window.addEventListener(
+      "load",
+      function() {
+
+        atualizarTela();
+
+        startMusic();
+
+      }
+    );
 
   </script>
 
