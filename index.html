@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-PT">
 <head>
@@ -16,13 +17,17 @@
       margin: 0;
       min-height: 100vh;
       font-family: Arial, Helvetica, sans-serif;
+
       background:
         radial-gradient(circle at top, #1e3a8a 0%, transparent 35%),
         linear-gradient(145deg, #020617, #0f172a 55%, #111827);
+
       color: white;
+
       display: flex;
       justify-content: center;
       align-items: center;
+
       padding: 20px;
     }
 
@@ -32,17 +37,23 @@
     }
 
     .card {
-      background: rgba(15, 23, 42, 0.92);
+      background: rgba(15, 23, 42, 0.94);
+
       border: 1px solid rgba(255,255,255,0.08);
+
       border-radius: 28px;
+
       padding: 28px;
-      box-shadow: 0 25px 70px rgba(0,0,0,0.45);
+
+      box-shadow:
+        0 25px 70px rgba(0,0,0,0.45);
+
       backdrop-filter: blur(12px);
     }
 
     .header {
       text-align: center;
-      margin-bottom: 28px;
+      margin-bottom: 22px;
     }
 
     .emoji {
@@ -52,67 +63,113 @@
 
     h1 {
       margin: 0;
+
       font-size: 30px;
+
       letter-spacing: -1px;
     }
 
     .subtitle {
       color: #94a3b8;
+
       margin-top: 8px;
+
       font-size: 15px;
     }
 
+    /* =========================
+       MÚSICA
+    ========================= */
+
     .music-control {
       width: 100%;
+
+      padding: 14px;
+
       margin-bottom: 18px;
-      padding: 12px 15px;
+
       border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 14px;
-      background: #111827;
-      color: #cbd5e1;
-      font-size: 13px;
-      font-weight: 700;
+
+      border-radius: 15px;
+
+      background: #1e293b;
+
+      color: white;
+
+      font-size: 15px;
+
+      font-weight: 900;
+
       cursor: pointer;
+
+      transition: 0.2s;
     }
 
     .music-control:hover {
+      transform: translateY(-1px);
+
       filter: brightness(1.15);
     }
 
+    .music-control:active {
+      transform: scale(0.98);
+    }
+
+    /* =========================
+       META
+    ========================= */
+
     .goal-card {
       background: rgba(30, 41, 59, 0.8);
+
       border-radius: 18px;
+
       padding: 18px;
+
       text-align: center;
+
       margin-bottom: 20px;
     }
 
     .goal-label {
       color: #94a3b8;
+
       font-size: 13px;
+
       text-transform: uppercase;
+
       letter-spacing: 1px;
     }
 
     .goal-value {
       font-size: 32px;
+
       font-weight: 800;
+
       margin-top: 5px;
     }
 
     .goal-edit {
-      margin-top: 14px;
+      margin-top: 15px;
     }
 
     .goal-edit input {
       width: 100%;
+
       padding: 13px;
+
       border-radius: 12px;
+
       border: 2px solid #334155;
+
       background: #020617;
+
       color: white;
+
       font-size: 17px;
+
       text-align: center;
+
       outline: none;
     }
 
@@ -122,14 +179,23 @@
 
     .goal-button {
       width: 100%;
+
       margin-top: 8px;
-      padding: 12px;
+
+      padding: 13px;
+
       border: none;
+
       border-radius: 12px;
+
       background: #2563eb;
+
       color: white;
+
       font-size: 14px;
-      font-weight: 800;
+
+      font-weight: 900;
+
       cursor: pointer;
     }
 
@@ -138,34 +204,50 @@
     }
 
     .future-note {
-      margin-top: 10px;
+      margin-top: 9px;
+
       color: #64748b;
+
       font-size: 11px;
     }
 
+    /* =========================
+       ESTATÍSTICAS
+    ========================= */
+
     .stats {
       display: grid;
+
       grid-template-columns: 1fr 1fr;
+
       gap: 12px;
+
       margin-bottom: 22px;
     }
 
     .stat {
       background: #111827;
+
       border-radius: 18px;
+
       padding: 18px 12px;
+
       text-align: center;
+
       border: 1px solid rgba(255,255,255,0.06);
     }
 
     .stat-label {
       color: #94a3b8;
+
       font-size: 12px;
+
       margin-bottom: 7px;
     }
 
     .stat-value {
       font-size: 24px;
+
       font-weight: 800;
     }
 
@@ -173,71 +255,123 @@
       color: #fbbf24;
     }
 
+    /* =========================
+       PROGRESSO
+    ========================= */
+
     .progress-area {
       margin-top: 10px;
     }
 
     .progress-info {
       display: flex;
+
       justify-content: space-between;
+
       margin-bottom: 9px;
+
       color: #cbd5e1;
+
       font-size: 14px;
+
       font-weight: 700;
     }
 
     .progress-bg {
       width: 100%;
+
       height: 32px;
+
       background: #334155;
+
       border-radius: 999px;
+
       overflow: hidden;
+
       padding: 4px;
     }
 
     .progress-bar {
       height: 100%;
+
       width: 0%;
+
       border-radius: 999px;
-      background: linear-gradient(90deg, #22c55e, #84cc16);
-      transition: width 0.5s ease;
+
+      background:
+        linear-gradient(
+          90deg,
+          #22c55e,
+          #84cc16
+        );
+
+      transition:
+        width 0.5s ease;
+
       display: flex;
+
       justify-content: flex-end;
+
       align-items: center;
+
       padding-right: 8px;
-      min-width: 0;
     }
 
     .progress-bar span {
       font-size: 11px;
+
       font-weight: 900;
+
       color: #052e16;
     }
 
+    /* =========================
+       MOTIVAÇÃO
+    ========================= */
+
     .motivation {
       text-align: center;
+
       font-size: 18px;
+
       font-weight: 800;
+
       margin: 22px 0;
+
       min-height: 25px;
     }
 
+    /* =========================
+       INPUT
+    ========================= */
+
     .input-title {
       font-size: 14px;
+
       color: #cbd5e1;
+
       margin-bottom: 8px;
+
       font-weight: 700;
     }
 
     .income-input {
       width: 100%;
+
       padding: 17px;
+
       border-radius: 15px;
+
       border: 2px solid #334155;
+
       background: #020617;
+
       color: white;
+
       font-size: 20px;
+
       text-align: center;
+
       outline: none;
     }
 
@@ -245,18 +379,32 @@
       border-color: #22c55e;
     }
 
+    /* =========================
+       BOTÕES
+    ========================= */
+
     .button {
       width: 100%;
+
       margin-top: 12px;
+
       padding: 17px;
+
       border: none;
+
       border-radius: 15px;
+
       background: #22c55e;
+
       color: #052e16;
+
       font-size: 17px;
+
       font-weight: 900;
+
       cursor: pointer;
-      transition: transform 0.15s, filter 0.15s;
+
+      transition: 0.15s;
     }
 
     .button:hover {
@@ -269,17 +417,59 @@
 
     .reset {
       background: #334155;
+
       color: white;
+
       font-size: 13px;
+
       margin-top: 8px;
     }
 
+    /* =========================
+       SUCESSO
+    ========================= */
+
+    .success {
+      background:
+        linear-gradient(
+          135deg,
+          #166534,
+          #22c55e
+        );
+
+      color: white;
+
+      border-radius: 18px;
+
+      padding: 18px;
+
+      text-align: center;
+
+      font-size: 20px;
+
+      font-weight: 900;
+
+      margin-top: 20px;
+
+      display: none;
+    }
+
+    /* =========================
+       DETALHES
+    ========================= */
+
     .details {
       margin-top: 22px;
+
       padding-top: 18px;
-      border-top: 1px solid rgba(255,255,255,0.08);
+
+      border-top:
+        1px solid rgba(255,255,255,0.08);
+
       color: #94a3b8;
+
       font-size: 13px;
+
       line-height: 1.7;
     }
 
@@ -287,19 +477,12 @@
       color: #e2e8f0;
     }
 
-    .success {
-      background: linear-gradient(135deg, #166534, #22c55e);
-      color: white;
-      border-radius: 18px;
-      padding: 18px;
-      text-align: center;
-      font-size: 20px;
-      font-weight: 900;
-      margin-top: 20px;
-      display: none;
-    }
+    /* =========================
+       MOBILE
+    ========================= */
 
     @media (max-width: 420px) {
+
       .card {
         padding: 21px;
       }
@@ -315,46 +498,80 @@
       .stat-value {
         font-size: 21px;
       }
+
     }
+
   </style>
 </head>
 
 <body>
 
-  <!-- Música -->
+  <!-- =========================================
+       MÚSICA
+  ========================================== -->
+
   <audio
     id="backgroundMusic"
     loop
     preload="auto"
   >
-    <source src="Elton John - I m Still Standing.mp3" type="audio/mpeg">
-    O seu navegador não suporta áudio.
+
+    <source
+      src="Elton John - I m Still Standing.mp3"
+      type="audio/mpeg"
+    >
+
+    Seu navegador não suporta áudio.
+
   </audio>
+
 
   <div class="container">
 
     <div class="card">
 
+
+      <!-- =====================================
+           CABEÇALHO
+      ====================================== -->
+
       <div class="header">
-        <div class="emoji">🎯</div>
 
-        <h1>Meta da Renda</h1>
+        <div class="emoji">
+          🎯
+        </div>
 
-        <div class="subtitle" id="subtitle">
+        <h1>
+          Meta da Renda
+        </h1>
+
+        <div
+          class="subtitle"
+          id="subtitle"
+        >
           Vamos buscar a sua meta!
         </div>
+
       </div>
 
-      <!-- Controle da música -->
+
+      <!-- =====================================
+           MÚSICA
+      ====================================== -->
+
       <button
         class="music-control"
         id="musicButton"
         onclick="toggleMusic()"
       >
-        🔊 Ativar música
+        🎵 TOCAR MÚSICA
       </button>
 
-      <!-- META -->
+
+      <!-- =====================================
+           META BRUTA
+      ====================================== -->
+
       <div class="goal-card">
 
         <div class="goal-label">
@@ -368,7 +585,7 @@
           €833,33
         </div>
 
-        <!-- Nova meta futura -->
+
         <div class="goal-edit">
 
           <input
@@ -379,6 +596,7 @@
             placeholder="Nova meta bruta"
           >
 
+
           <button
             class="goal-button"
             onclick="updateGoal()"
@@ -386,16 +604,25 @@
             ➕ DEFINIR NOVA META
           </button>
 
+
           <div class="future-note">
-            Pode alterar esta meta quando quiser para uma nova meta futura.
+
+            Pode alterar esta meta quando quiser
+            para uma nova meta futura.
+
           </div>
 
         </div>
 
       </div>
 
-      <!-- VALORES -->
+
+      <!-- =====================================
+           ESTATÍSTICAS
+      ====================================== -->
+
       <div class="stats">
+
 
         <div class="stat">
 
@@ -412,6 +639,7 @@
 
         </div>
 
+
         <div class="stat">
 
           <div class="stat-label">
@@ -427,9 +655,14 @@
 
         </div>
 
+
       </div>
 
-      <!-- PROGRESSO -->
+
+      <!-- =====================================
+           PROGRESSO
+      ====================================== -->
+
       <div class="progress-area">
 
         <div class="progress-info">
@@ -443,6 +676,7 @@
           </span>
 
         </div>
+
 
         <div class="progress-bg">
 
@@ -461,6 +695,11 @@
 
       </div>
 
+
+      <!-- =====================================
+           MOTIVAÇÃO
+      ====================================== -->
+
       <div
         class="motivation"
         id="motivation"
@@ -468,10 +707,17 @@
         🚀 Vamos buscar essa meta!
       </div>
 
-      <!-- FATURAMENTO -->
+
+      <!-- =====================================
+           FATURAMENTO
+      ====================================== -->
+
       <div class="input-title">
+
         Digite o seu faturamento bruto TOTAL:
+
       </div>
+
 
       <input
         id="amountInput"
@@ -482,202 +728,276 @@
         placeholder="Ex.: 700"
       >
 
+
       <button
         class="button"
         onclick="updateProgress()"
       >
+
         ATUALIZAR PROGRESSO 🚀
+
       </button>
+
 
       <button
         class="button reset"
         onclick="resetProgress()"
       >
+
         Voltar para €560
+
       </button>
 
-      <!-- SUCESSO -->
+
+      <!-- =====================================
+           META ATINGIDA
+      ====================================== -->
+
       <div
         class="success"
         id="success"
       >
+
         🏆 META ATINGIDA! 🏆
+
         <br>
+
         A renda está garantida!
+
       </div>
 
-      <!-- DETALHES -->
+
+      <!-- =====================================
+           DETALHES
+      ====================================== -->
+
       <div class="details">
 
         <div>
+
           🚗 Reserva para frota:
-          <strong>10%</strong>
+
+          <strong>
+            10%
+          </strong>
+
         </div>
 
+
         <div>
+
           🏠 Renda líquida desejada:
-          <strong id="netIncome">
+
+          <strong>
             €750,00
           </strong>
+
         </div>
 
+
         <div>
+
           📊 Meta bruta atual:
+
           <strong id="detailsGoal">
             €833,33
           </strong>
+
         </div>
 
       </div>
+
 
     </div>
 
   </div>
 
+
   <script>
 
-    /*
-      =====================================================
-      CONFIGURAÇÃO
-      =====================================================
-    */
+
+    /* =========================================
+       CONFIGURAÇÃO
+    ========================================== */
 
     const META_INICIAL = 833.33;
+
     const VALOR_INICIAL = 560;
 
 
-    /*
-      =====================================================
-      META ATUAL
-      =====================================================
-    */
+    /* =========================================
+       RECUPERAR META SALVA
+    ========================================== */
 
     let META =
       localStorage.getItem("metaRendaGoal")
-        ? Number(localStorage.getItem("metaRendaGoal"))
+        ? Number(
+            localStorage.getItem("metaRendaGoal")
+          )
         : META_INICIAL;
 
 
-    /*
-      =====================================================
-      VALOR ATUAL
-      =====================================================
-    */
+    /* =========================================
+       RECUPERAR FATURAMENTO
+    ========================================== */
 
     let valorAtual =
       localStorage.getItem("metaRenda")
-        ? Number(localStorage.getItem("metaRenda"))
+        ? Number(
+            localStorage.getItem("metaRenda")
+          )
         : VALOR_INICIAL;
 
 
-    /*
-      =====================================================
-      FORMATAÇÃO EURO
-      =====================================================
-    */
+    /* =========================================
+       FORMATAR EURO
+    ========================================== */
 
     function euro(valor) {
 
-      return valor.toLocaleString("pt-PT", {
-        style: "currency",
-        currency: "EUR"
-      });
+      return valor.toLocaleString(
+        "pt-PT",
+        {
+          style: "currency",
+          currency: "EUR"
+        }
+      );
 
     }
 
 
-    /*
-      =====================================================
-      ATUALIZAR TELA
-      =====================================================
-    */
+    /* =========================================
+       ATUALIZAR TELA
+    ========================================== */
 
     function atualizarTela() {
 
+
       const restante =
-        Math.max(META - valorAtual, 0);
+        Math.max(
+          META - valorAtual,
+          0
+        );
 
 
       const percentual =
         META > 0
-          ? Math.min((valorAtual / META) * 100, 100)
+          ? Math.min(
+              (valorAtual / META) * 100,
+              100
+            )
           : 0;
 
 
-      document.getElementById("currentValue")
-        .textContent = euro(valorAtual);
+      document.getElementById(
+        "currentValue"
+      ).textContent =
+        euro(valorAtual);
 
 
-      document.getElementById("remainingValue")
-        .textContent = euro(restante);
+      document.getElementById(
+        "remainingValue"
+      ).textContent =
+        euro(restante);
 
 
-      document.getElementById("goalValue")
-        .textContent = euro(META);
+      document.getElementById(
+        "goalValue"
+      ).textContent =
+        euro(META);
 
 
-      document.getElementById("detailsGoal")
-        .textContent = euro(META);
+      document.getElementById(
+        "detailsGoal"
+      ).textContent =
+        euro(META);
 
 
-      document.getElementById("percentage")
-        .textContent =
-        percentual.toLocaleString("pt-PT", {
-          minimumFractionDigits: 1,
-          maximumFractionDigits: 1
-        }) + "%";
+      document.getElementById(
+        "percentage"
+      ).textContent =
+        percentual.toLocaleString(
+          "pt-PT",
+          {
+            minimumFractionDigits: 1,
+            maximumFractionDigits: 1
+          }
+        ) + "%";
 
 
-      document.getElementById("progressBar")
-        .style.width = percentual + "%";
+      document.getElementById(
+        "progressBar"
+      ).style.width =
+        percentual + "%";
 
 
-      document.getElementById("progressText")
-        .textContent =
+      document.getElementById(
+        "progressText"
+      ).textContent =
         Math.round(percentual) + "%";
 
 
-      document.getElementById("subtitle")
-        .textContent =
-        "Vamos buscar os " + euro(META) + "!";
+      document.getElementById(
+        "subtitle"
+      ).textContent =
+        "Vamos buscar os " +
+        euro(META) +
+        "!";
 
 
       const motivation =
-        document.getElementById("motivation");
+        document.getElementById(
+          "motivation"
+        );
 
 
       const success =
-        document.getElementById("success");
+        document.getElementById(
+          "success"
+        );
 
 
       if (valorAtual >= META) {
 
+
         motivation.textContent =
           "🏆 CONSEGUIU! META BATIDA!";
 
-        success.style.display = "block";
+
+        success.style.display =
+          "block";
+
 
       } else {
 
-        success.style.display = "none";
+
+        success.style.display =
+          "none";
 
 
         if (percentual >= 90) {
 
+
           motivation.textContent =
             "🔥 ESTÁ QUASE! NÃO PARE AGORA!";
 
+
         } else if (percentual >= 75) {
+
 
           motivation.textContent =
             "💪 MUITO BEM! CONTINUE FIRME!";
 
+
         } else if (percentual >= 50) {
+
 
           motivation.textContent =
             "🚀 JÁ PASSOU DA METADE! VAMOS!";
 
+
         } else {
+
 
           motivation.textContent =
             "🔥 CADA EURO CONTA! VAMOS BUSCAR!";
@@ -689,32 +1009,39 @@
     }
 
 
-    /*
-      =====================================================
-      ATUALIZAR FATURAMENTO
-      =====================================================
-    */
+    /* =========================================
+       ATUALIZAR FATURAMENTO
+    ========================================== */
 
     function updateProgress() {
 
+
       const input =
-        document.getElementById("amountInput");
+        document.getElementById(
+          "amountInput"
+        );
 
 
       const valor =
         Number(input.value);
 
 
-      if (isNaN(valor) || valor < 0) {
+      if (
+        isNaN(valor) ||
+        valor < 0
+      ) {
 
-        alert("Digite um valor válido.");
+        alert(
+          "Digite um valor válido."
+        );
 
         return;
 
       }
 
 
-      valorAtual = valor;
+      valorAtual =
+        valor;
 
 
       localStorage.setItem(
@@ -731,32 +1058,39 @@
     }
 
 
-    /*
-      =====================================================
-      NOVA META FUTURA
-      =====================================================
-    */
+    /* =========================================
+       DEFINIR NOVA META
+    ========================================== */
 
     function updateGoal() {
 
+
       const input =
-        document.getElementById("goalInput");
+        document.getElementById(
+          "goalInput"
+        );
 
 
       const novaMeta =
         Number(input.value);
 
 
-      if (isNaN(novaMeta) || novaMeta <= 0) {
+      if (
+        isNaN(novaMeta) ||
+        novaMeta <= 0
+      ) {
 
-        alert("Digite uma meta válida.");
+        alert(
+          "Digite uma meta válida."
+        );
 
         return;
 
       }
 
 
-      META = novaMeta;
+      META =
+        novaMeta;
 
 
       localStorage.setItem(
@@ -772,21 +1106,22 @@
 
 
       alert(
-        "🎯 Nova meta definida: " + euro(META)
+        "🎯 Nova meta definida: " +
+        euro(META)
       );
 
     }
 
 
-    /*
-      =====================================================
-      RESET DO FATURAMENTO
-      =====================================================
-    */
+    /* =========================================
+       RESET FATURAMENTO
+    ========================================== */
 
     function resetProgress() {
 
-      valorAtual = VALOR_INICIAL;
+
+      valorAtual =
+        VALOR_INICIAL;
 
 
       localStorage.setItem(
@@ -800,11 +1135,9 @@
     }
 
 
-    /*
-      =====================================================
-      ENTER NO CAMPO DE FATURAMENTO
-      =====================================================
-    */
+    /* =========================================
+       ENTER NO FATURAMENTO
+    ========================================== */
 
     document
       .getElementById("amountInput")
@@ -812,7 +1145,9 @@
         "keydown",
         function(event) {
 
-          if (event.key === "Enter") {
+          if (
+            event.key === "Enter"
+          ) {
 
             updateProgress();
 
@@ -822,11 +1157,9 @@
       );
 
 
-    /*
-      =====================================================
-      ENTER NO CAMPO DE NOVA META
-      =====================================================
-    */
+    /* =========================================
+       ENTER NA NOVA META
+    ========================================== */
 
     document
       .getElementById("goalInput")
@@ -834,7 +1167,9 @@
         "keydown",
         function(event) {
 
-          if (event.key === "Enter") {
+          if (
+            event.key === "Enter"
+          ) {
 
             updateGoal();
 
@@ -844,80 +1179,123 @@
       );
 
 
-    /*
-      =====================================================
-      MÚSICA
-      =====================================================
-    */
+    /* =========================================
+       MÚSICA
+    ========================================== */
 
     const music =
-      document.getElementById("backgroundMusic");
+      document.getElementById(
+        "backgroundMusic"
+      );
 
 
     const musicButton =
-      document.getElementById("musicButton");
+      document.getElementById(
+        "musicButton"
+      );
 
 
-    async function startMusic() {
+    function tocarMusica() {
 
-      try {
 
-        music.volume = 0.35;
+      music.volume =
+        0.35;
 
-        await music.play();
 
-        musicButton.textContent =
-          "⏸️ Pausar música";
+      music.play()
+        .then(function() {
 
-      } catch (error) {
 
-        /*
-          O navegador bloqueou o autoplay.
-          O botão continuará disponível.
-        */
+          musicButton.textContent =
+            "⏸️ PAUSAR MÚSICA";
 
-        musicButton.textContent =
-          "▶️ Ativar música";
 
-      }
+        })
+        .catch(function() {
+
+
+          musicButton.textContent =
+            "🎵 TOCAR MÚSICA";
+
+
+        });
 
     }
 
 
     function toggleMusic() {
 
-      if (music.paused) {
 
-        music.play()
-          .then(() => {
+      if (
+        music.paused
+      ) {
 
-            musicButton.textContent =
-              "⏸️ Pausar música";
 
-          })
-          .catch(() => {
+        tocarMusica();
 
-            alert(
-              "Clique novamente para ativar a música."
-            );
-
-          });
 
       } else {
 
+
         music.pause();
 
+
         musicButton.textContent =
-          "▶️ Ativar música";
+          "🎵 TOCAR MÚSICA";
 
       }
 
     }
 
 
-    /*
-      Tenta tocar automaticamente quando a página abre.
-    */
+    /* =========================================
+       PRIMEIRA INTERAÇÃO
+    ========================================== */
+
+    function iniciarComPrimeiraInteracao() {
+
+
+      if (
+        music.paused
+      ) {
+
+        tocarMusica();
+
+      }
+
+
+      document.removeEventListener(
+        "click",
+        iniciarComPrimeiraInteracao
+      );
+
+
+      document.removeEventListener(
+        "touchstart",
+        iniciarComPrimeiraInteracao
+      );
+
+    }
+
+
+    document.addEventListener(
+      "click",
+      iniciarComPrimeiraInteracao
+    );
+
+
+    document.addEventListener(
+      "touchstart",
+      iniciarComPrimeiraInteracao,
+      {
+        passive: true
+      }
+    );
+
+
+    /* =========================================
+       AO ABRIR O SITE
+    ========================================== */
 
     window.addEventListener(
       "load",
@@ -925,12 +1303,14 @@
 
         atualizarTela();
 
-        startMusic();
+        tocarMusica();
 
       }
     );
+
 
   </script>
 
 </body>
 </html>
+```
